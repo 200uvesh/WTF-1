@@ -256,7 +256,7 @@ exports.loginFacebook = async (req, res) => {
   const redirectURI = encodeURIComponent(
     "http://localhost:8585/user/verifyFacebook"
   );
-  const authURL = `https://www.facebook.com/v13.0/dialog/oauth?client_id=${process.env.APP_ID}&redirect_uri=${redirectURI}`;
+  const authURL = `https://www.facebook.com/v13.0/dialog/oauth?client_id=${process.env.FB_APP_ID}&redirect_uri=${redirectURI}`;
   res.send(authURL);
 };
 
@@ -270,8 +270,8 @@ exports.verifyFacebook = async (req, res) => {
       "https://graph.facebook.com/v13.0/oauth/access_token",
       {
         params: {
-          client_id: process.env.APP_ID,
-          client_secret: process.env.APP_SECRET,
+          client_id: process.env.FB_APP_ID,
+          client_secret: process.env.FB_APP_SECRET,
           redirect_uri: "http://localhost:8585/user/verifyFacebook",
           code: code,
         },
